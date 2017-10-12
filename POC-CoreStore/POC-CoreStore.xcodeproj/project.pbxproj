@@ -1,0 +1,402 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		840B6B511F139E66006E69FA /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840B6B501F139E66006E69FA /* Marshal.framework */; };
+		840B6B5A1F14B1D3006E69FA /* POC-CoreStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 848265391F0A32FB008DC915 /* POC-CoreStore.xcdatamodeld */; };
+		840B6B611F14B2DA006E69FA /* Salary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B6B5B1F14B2DA006E69FA /* Salary.swift */; };
+		840B6B631F14B2DA006E69FA /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B6B5D1F14B2DA006E69FA /* Employee.swift */; };
+		840B6B651F14B2DA006E69FA /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B6B5F1F14B2DA006E69FA /* Department.swift */; };
+		840B6B681F14F05A006E69FA /* EmployeeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B6B671F14F05A006E69FA /* EmployeeListCell.swift */; };
+		84422F741F0A1EB3005A404F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84422F731F0A1EB3005A404F /* AppDelegate.swift */; };
+		84422F791F0A1EB3005A404F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84422F771F0A1EB3005A404F /* Main.storyboard */; };
+		84422F7B1F0A1EB3005A404F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84422F7A1F0A1EB3005A404F /* Assets.xcassets */; };
+		84422F7E1F0A1EB3005A404F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84422F7C1F0A1EB3005A404F /* LaunchScreen.storyboard */; };
+		8445108C1F0B4913005561B0 /* MKUISwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445108B1F0B4913005561B0 /* MKUISwitch.swift */; };
+		844510961F0BA5EA005561B0 /* EmpDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844510951F0BA5E9005561B0 /* EmpDetailViewController.swift */; };
+		848265371F0A3252008DC915 /* CoreStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848265361F0A3252008DC915 /* CoreStore.framework */; };
+		8482653D1F0A4A7C008DC915 /* EmployeeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482653C1F0A4A7C008DC915 /* EmployeeListViewController.swift */; };
+		8482653F1F0A54C0008DC915 /* AddEmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482653E1F0A54C0008DC915 /* AddEmployeeViewController.swift */; };
+		848265411F0A5577008DC915 /* AppDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848265401F0A5577008DC915 /* AppDataStack.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		840B6B501F139E66006E69FA /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Marshal.framework; path = Carthage/Build/iOS/Marshal.framework; sourceTree = "<group>"; };
+		840B6B5B1F14B2DA006E69FA /* Salary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Salary.swift; sourceTree = "<group>"; };
+		840B6B5D1F14B2DA006E69FA /* Employee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
+		840B6B5F1F14B2DA006E69FA /* Department.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
+		840B6B671F14F05A006E69FA /* EmployeeListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeListCell.swift; sourceTree = "<group>"; };
+		84422F701F0A1EB3005A404F /* POC-CoreStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "POC-CoreStore.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84422F731F0A1EB3005A404F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		84422F781F0A1EB3005A404F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		84422F7A1F0A1EB3005A404F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		84422F7D1F0A1EB3005A404F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		84422F7F1F0A1EB3005A404F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8445108B1F0B4913005561B0 /* MKUISwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKUISwitch.swift; sourceTree = "<group>"; };
+		844510951F0BA5E9005561B0 /* EmpDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmpDetailViewController.swift; sourceTree = "<group>"; };
+		848265361F0A3252008DC915 /* CoreStore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreStore.framework; path = Carthage/Build/iOS/CoreStore.framework; sourceTree = "<group>"; };
+		8482653A1F0A32FB008DC915 /* POC-CoreStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "POC-CoreStore.xcdatamodel"; sourceTree = "<group>"; };
+		8482653C1F0A4A7C008DC915 /* EmployeeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeListViewController.swift; sourceTree = "<group>"; };
+		8482653E1F0A54C0008DC915 /* AddEmployeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEmployeeViewController.swift; sourceTree = "<group>"; };
+		848265401F0A5577008DC915 /* AppDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDataStack.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		84422F6D1F0A1EB3005A404F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				848265371F0A3252008DC915 /* CoreStore.framework in Frameworks */,
+				840B6B511F139E66006E69FA /* Marshal.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		84422F671F0A1EB3005A404F = {
+			isa = PBXGroup;
+			children = (
+				84422F721F0A1EB3005A404F /* POC-CoreStore */,
+				84422F711F0A1EB3005A404F /* Products */,
+				848265351F0A3252008DC915 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		84422F711F0A1EB3005A404F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				84422F701F0A1EB3005A404F /* POC-CoreStore.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		84422F721F0A1EB3005A404F /* POC-CoreStore */ = {
+			isa = PBXGroup;
+			children = (
+				840B6B5B1F14B2DA006E69FA /* Salary.swift */,
+				840B6B5D1F14B2DA006E69FA /* Employee.swift */,
+				840B6B5F1F14B2DA006E69FA /* Department.swift */,
+				84422F731F0A1EB3005A404F /* AppDelegate.swift */,
+				84422F771F0A1EB3005A404F /* Main.storyboard */,
+				84422F7A1F0A1EB3005A404F /* Assets.xcassets */,
+				84422F7C1F0A1EB3005A404F /* LaunchScreen.storyboard */,
+				84422F7F1F0A1EB3005A404F /* Info.plist */,
+				848265391F0A32FB008DC915 /* POC-CoreStore.xcdatamodeld */,
+				8482653C1F0A4A7C008DC915 /* EmployeeListViewController.swift */,
+				8482653E1F0A54C0008DC915 /* AddEmployeeViewController.swift */,
+				848265401F0A5577008DC915 /* AppDataStack.swift */,
+				8445108B1F0B4913005561B0 /* MKUISwitch.swift */,
+				844510951F0BA5E9005561B0 /* EmpDetailViewController.swift */,
+				840B6B671F14F05A006E69FA /* EmployeeListCell.swift */,
+			);
+			path = "POC-CoreStore";
+			sourceTree = "<group>";
+		};
+		848265351F0A3252008DC915 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				840B6B501F139E66006E69FA /* Marshal.framework */,
+				848265361F0A3252008DC915 /* CoreStore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		84422F6F1F0A1EB3005A404F /* POC-CoreStore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84422F821F0A1EB3005A404F /* Build configuration list for PBXNativeTarget "POC-CoreStore" */;
+			buildPhases = (
+				84422F6C1F0A1EB3005A404F /* Sources */,
+				84422F6D1F0A1EB3005A404F /* Frameworks */,
+				84422F6E1F0A1EB3005A404F /* Resources */,
+				848265381F0A325A008DC915 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "POC-CoreStore";
+			productName = "POC-CoreStore";
+			productReference = 84422F701F0A1EB3005A404F /* POC-CoreStore.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		84422F681F0A1EB3005A404F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = v2solutions;
+				TargetAttributes = {
+					84422F6F1F0A1EB3005A404F = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 4G2KHJ47KE;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 84422F6B1F0A1EB3005A404F /* Build configuration list for PBXProject "POC-CoreStore" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 84422F671F0A1EB3005A404F;
+			productRefGroup = 84422F711F0A1EB3005A404F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				84422F6F1F0A1EB3005A404F /* POC-CoreStore */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		84422F6E1F0A1EB3005A404F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84422F7E1F0A1EB3005A404F /* LaunchScreen.storyboard in Resources */,
+				84422F7B1F0A1EB3005A404F /* Assets.xcassets in Resources */,
+				84422F791F0A1EB3005A404F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		848265381F0A325A008DC915 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/CoreStore.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Marshal.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		84422F6C1F0A1EB3005A404F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				844510961F0BA5EA005561B0 /* EmpDetailViewController.swift in Sources */,
+				84422F741F0A1EB3005A404F /* AppDelegate.swift in Sources */,
+				848265411F0A5577008DC915 /* AppDataStack.swift in Sources */,
+				840B6B631F14B2DA006E69FA /* Employee.swift in Sources */,
+				8482653F1F0A54C0008DC915 /* AddEmployeeViewController.swift in Sources */,
+				8482653D1F0A4A7C008DC915 /* EmployeeListViewController.swift in Sources */,
+				840B6B611F14B2DA006E69FA /* Salary.swift in Sources */,
+				840B6B651F14B2DA006E69FA /* Department.swift in Sources */,
+				8445108C1F0B4913005561B0 /* MKUISwitch.swift in Sources */,
+				840B6B5A1F14B1D3006E69FA /* POC-CoreStore.xcdatamodeld in Sources */,
+				840B6B681F14F05A006E69FA /* EmployeeListCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		84422F771F0A1EB3005A404F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84422F781F0A1EB3005A404F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		84422F7C1F0A1EB3005A404F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84422F7D1F0A1EB3005A404F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		84422F801F0A1EB3005A404F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		84422F811F0A1EB3005A404F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		84422F831F0A1EB3005A404F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4G2KHJ47KE;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "POC-CoreStore/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.v2solutions.POC-CoreStore";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		84422F841F0A1EB3005A404F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4G2KHJ47KE;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "POC-CoreStore/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.v2solutions.POC-CoreStore";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		84422F6B1F0A1EB3005A404F /* Build configuration list for PBXProject "POC-CoreStore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84422F801F0A1EB3005A404F /* Debug */,
+				84422F811F0A1EB3005A404F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84422F821F0A1EB3005A404F /* Build configuration list for PBXNativeTarget "POC-CoreStore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84422F831F0A1EB3005A404F /* Debug */,
+				84422F841F0A1EB3005A404F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		848265391F0A32FB008DC915 /* POC-CoreStore.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8482653A1F0A32FB008DC915 /* POC-CoreStore.xcdatamodel */,
+			);
+			currentVersion = 8482653A1F0A32FB008DC915 /* POC-CoreStore.xcdatamodel */;
+			path = "POC-CoreStore.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 84422F681F0A1EB3005A404F /* Project object */;
+}
