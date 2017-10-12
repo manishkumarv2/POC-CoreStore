@@ -15,7 +15,8 @@ class AppDataStack {
     
     static func CreateCoreStore() {
         
-        let sqLiteStore = SQLiteStore(fileName: "POC-CoreStore.sqlite")
+        let sqLiteStore = SQLiteStore(fileName: "POC-CoreStore.sqlite",
+                                      localStorageOptions: .allowSynchronousLightweightMigration)
         print(sqLiteStore.fileURL)
         
         do {
@@ -126,16 +127,48 @@ class AppDataStack {
         return employee
     }
     
+//    static func deleteEmployee(employee: Employee) {
+//        AppDataStack.dataStack.perform(asynchronous: { (transaction) -> Void in
+//            transaction.delete(employee)
+//        }, success: { (success) in
+//            print(success)
+//        }) { (csError) in
+//            print(csError)
+//        }
+//    }
+    
+   
     static func deleteEmployee(employee: Employee) {
-        AppDataStack.dataStack.perform(asynchronous: { (transaction) -> Void in
-            transaction.delete(employee)
-        }, success: { (success) in
-            print(success)
-        }) { (csError) in
-            print(csError)
-        }
+        AppDataStack.dataStack.perform(
+            asynchronous: { (transaction) -> Bool in
+                transaction.delete(employee)
+                return transaction.hasChanges
+        },completion: { (result) -> Void in
+            switch result {
+            case .success(let hasChanges): print("success! Has changes? \(hasChanges)")
+            case .failure(let error): print(error)
+            }
+        })
     }
     
+    
+    static func deleteEmployee(employee: Employee, completion:@escaping (Bool,Error?) -> Void) {
+        AppDataStack.dataStack.perform(
+            asynchronous: { (transaction) -> Bool in
+                transaction.delete(employee)
+                return transaction.hasChanges
+        },completion: { (result) -> Void in
+            switch result {
+            case .success(let hasChanges):
+                print("success! Has changes? \(hasChanges)")
+                completion(hasChanges,nil)
+            case .failure(let error):
+                print(error)
+                completion(false, error)
+            }
+        })
+    }
+ 
     
     
 }

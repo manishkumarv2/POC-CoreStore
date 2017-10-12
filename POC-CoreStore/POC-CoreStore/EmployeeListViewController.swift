@@ -244,11 +244,16 @@ extension EmployeeListViewController: UITableViewDataSource,UITableViewDelegate 
         if editingStyle == .delete {
             print("Deleted")
             let employee = self.employeeList[indexPath.row]
-            AppDataStack.deleteEmployee(employee: employee)
-            employeeTableView.beginUpdates()
-            self.employeeList.remove(at: indexPath.row)
-            employeeTableView.deleteRows(at: [indexPath], with: .automatic)
-            employeeTableView.endUpdates()
+            AppDataStack.deleteEmployee(employee: employee, completion: { (success,error) in
+                if success {
+                    self.employeeTableView.beginUpdates()
+                    self.employeeList.remove(at: indexPath.row)
+                    self.employeeTableView.deleteRows(at: [indexPath], with: .automatic)
+                    self.employeeTableView.endUpdates()
+                }else{
+                    print("Error \(String(describing: error))")
+                }
+            })
         }
     }
 
