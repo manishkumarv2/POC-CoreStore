@@ -43,11 +43,71 @@ public struct Where: FetchClause, QueryClause, DeleteClause, Hashable {
     }
     
     /**
+     Combines two `Where` predicates together using `AND` operator.
+     - parameter left: the left hand side `Where` clause
+     - parameter right: the right hand side `Where` clause
+     - returns: Return `left` unchanged if `right` is nil
+     */
+    public static func && (left: Where, right: Where?) -> Where {
+        
+        if let right = right {
+            
+            return left && right
+        }
+        return left
+    }
+    
+    /**
+     Combines two `Where` predicates together using `AND` operator.
+     - parameter left: the left hand side `Where` clause
+     - parameter right: the right hand side `Where` clause
+     - returns: Returns `right` unchanged if `left` is nil
+     */
+    public static func && (left: Where?, right: Where) -> Where {
+        
+        if let left = left {
+            
+            return left && right
+        }
+        return right
+    }
+    
+    /**
      Combines two `Where` predicates together using `OR` operator
      */
     public static func || (left: Where, right: Where) -> Where {
         
         return Where(NSCompoundPredicate(type: .or, subpredicates: [left.predicate, right.predicate]))
+    }
+    
+    /**
+     Combines two `Where` predicates together using `OR` operator.
+     - parameter left: the left hand side `Where` clause
+     - parameter right: the right hand side `Where` clause
+     - returns: Returns `left` unchanged if `right` is nil
+     */
+    public static func || (left: Where, right: Where?) -> Where {
+        
+        if let right = right {
+            
+            return left || right
+        }
+        return left
+    }
+    
+    /**
+     Combines two `Where` predicates together using `OR` operator.
+     - parameter left: the left hand side `Where` clause
+     - parameter right: the right hand side `Where` clause
+     - returns: Return `right` unchanged if `left` is nil
+     */
+    public static func || (left: Where?, right: Where) -> Where {
+        
+        if let left = left {
+            
+            return left || right
+        }
+        return right
     }
     
     /**
@@ -214,5 +274,27 @@ public struct Where: FetchClause, QueryClause, DeleteClause, Hashable {
     public var hashValue: Int {
         
         return self.predicate.hashValue
+    }
+}
+
+
+// MARK: - Sequence where Element == Where
+
+public extension Sequence where Iterator.Element == Where {
+    
+    /**
+     Combines multiple `Where` predicates together using `AND` operator
+     */
+    public func combinedByAnd() -> Where {
+        
+        return Where(NSCompoundPredicate(type: .and, subpredicates: self.map({ $0.predicate })))
+    }
+    
+    /**
+     Combines multiple `Where` predicates together using `OR` operator
+     */
+    public func combinedByOr() -> Where {
+        
+        return Where(NSCompoundPredicate(type: .or, subpredicates: self.map({ $0.predicate })))
     }
 }
