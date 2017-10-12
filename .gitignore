@@ -68,3 +68,9 @@ fastlane/test_output
 
 faraday.log
 .v2gpti/
+
+
+.DS_Store
+POC-CoreStore/.DS_Store
+POC-CoreStore/Carthage/.DS_Store
+POC-CoreStore/Carthage/Checkouts/.DS_Store
