@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		840B6B511F139E66006E69FA /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840B6B501F139E66006E69FA /* Marshal.framework */; };
+		840731481F8F74F70011F75D /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840B6B501F139E66006E69FA /* Marshal.framework */; };
+		840731491F8F74F70011F75D /* Marshal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 840B6B501F139E66006E69FA /* Marshal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8407314B1F8F74F70011F75D /* CoreStore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 848265361F0A3252008DC915 /* CoreStore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		840B6B5A1F14B1D3006E69FA /* POC-CoreStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 848265391F0A32FB008DC915 /* POC-CoreStore.xcdatamodeld */; };
 		840B6B611F14B2DA006E69FA /* Salary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B6B5B1F14B2DA006E69FA /* Salary.swift */; };
 		840B6B631F14B2DA006E69FA /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B6B5D1F14B2DA006E69FA /* Employee.swift */; };
@@ -24,6 +26,21 @@
 		8482653F1F0A54C0008DC915 /* AddEmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482653E1F0A54C0008DC915 /* AddEmployeeViewController.swift */; };
 		848265411F0A5577008DC915 /* AppDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848265401F0A5577008DC915 /* AppDataStack.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8407314C1F8F74F70011F75D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				840731491F8F74F70011F75D /* Marshal.framework in Embed Frameworks */,
+				8407314B1F8F74F70011F75D /* CoreStore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		840B6B501F139E66006E69FA /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Marshal.framework; path = Carthage/Build/iOS/Marshal.framework; sourceTree = "<group>"; };
@@ -51,8 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				840731481F8F74F70011F75D /* Marshal.framework in Frameworks */,
 				848265371F0A3252008DC915 /* CoreStore.framework in Frameworks */,
-				840B6B511F139E66006E69FA /* Marshal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +135,7 @@
 				84422F6D1F0A1EB3005A404F /* Frameworks */,
 				84422F6E1F0A1EB3005A404F /* Resources */,
 				848265381F0A325A008DC915 /* ShellScript */,
+				8407314C1F8F74F70011F75D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
