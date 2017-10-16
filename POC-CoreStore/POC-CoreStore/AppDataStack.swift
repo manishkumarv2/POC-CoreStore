@@ -127,6 +127,17 @@ class AppDataStack {
         return employee
     }
     
+    static func fetchEmployee(identity: String, completion: (Employee!) -> Void) {
+        if let employees = dataStack.fetchAll(
+            From<Employee>(),
+            Where("identity == '\(identity)'")
+            ) {
+            completion(employees.first)
+        }else {
+            completion(nil)
+        }
+    }
+    
 //    static func deleteEmployee(employee: Employee) {
 //        AppDataStack.dataStack.perform(asynchronous: { (transaction) -> Void in
 //            transaction.delete(employee)
@@ -169,6 +180,27 @@ class AppDataStack {
         })
     }
  
+    static func updateEmployee(identity: String, lastName: String, completion: @escaping (Bool) -> Void) {
+        
+        AppDataStack.dataStack.perform(
+            asynchronous: { (transaction) -> Void in
+                let person = transaction.fetchOne(
+                    From<Employee>(),
+                    Where("identity", isEqualTo: identity)
+                )
+                person?.lastName = lastName
+        },completion: { (result) -> Void in
+            switch result {
+            case .success(let hasChanges):
+                print("success! Has changes? \(hasChanges)")
+                completion(true)
+            case .failure(let error):
+                print(error)
+                completion(false)
+            }
+        })
+
+    }
     
     
 }

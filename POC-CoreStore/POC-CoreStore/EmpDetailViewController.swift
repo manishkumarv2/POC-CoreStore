@@ -10,13 +10,38 @@ import Foundation
 import UIKit
 
 class EmpDetailViewController: UIViewController {
-    var employee: Employee!
+    
+    private var employee: Employee! {
+        didSet{
+            if detailTextView != nil {
+                updateEmployee()
+            }
+        }
+    }
+    
+    var employeeId: String = "" {
+        didSet(id){
+                fetchEmployeeByID()
+            }
+    }
     
     @IBOutlet weak var detailTextView: UITextView!
     
     override func viewDidLoad() {
-        print(employee)
-        
+        print("ViewDIDLoad")
+        updateEmployee()
+    }
+
+    
+    private func fetchEmployeeByID(){
+        AppDataStack.fetchEmployee(identity: employeeId, completion: { (emp) in
+            if let emp = emp {
+                employee = emp
+            }
+        })
+    }
+    
+    func updateEmployee(){
         var details: String = "Name : "
         details = "\(details) \(String(describing: employee.firstName!)) "
         details = "\(details) \(String(describing: employee.lastName!)) \n"
@@ -28,10 +53,23 @@ class EmpDetailViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = DateFormatter.Style.medium
         dateFormatter.timeStyle = DateFormatter.Style.none
-        let bod = dateFormatter.string(from: employee.birthDate! as Date)
+        let dob = dateFormatter.string(from: employee.birthDate! as Date)
         
-        details = "\(details) BirthDate : \(bod) \n"
+        details = "\(details) BirthDate : \(dob) \n"
         
         detailTextView.text = details
+    }
+    
+    @IBAction func editThePerson(_ sender: Any) {
+        AppDataStack.updateEmployee(identity: employeeId, lastName: "Kumar") { (result) in
+            if result {
+                self.clearAll()
+                self.fetchEmployeeByID()
+            }
+        }
+    }
+    
+    private func clearAll(){
+        detailTextView.text = ""
     }
 }

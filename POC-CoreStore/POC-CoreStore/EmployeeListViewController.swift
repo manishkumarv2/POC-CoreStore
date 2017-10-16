@@ -70,7 +70,9 @@ class EmployeeListViewController: UIViewController {
             let emp = employeeList[indexPath.row]
             
             let viewC = segue.destination as! EmpDetailViewController
-            viewC.employee = emp
+            if let id = emp.identity{
+                viewC.employeeId = id
+            }
         }
     }
     
