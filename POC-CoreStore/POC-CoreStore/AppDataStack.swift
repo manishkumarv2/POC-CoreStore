@@ -147,7 +147,8 @@ class AppDataStack {
 //            print(csError)
 //        }
 //    }
-    
+  
+//    MARK:- DELETE
    
     static func deleteEmployee(employee: Employee) {
         AppDataStack.dataStack.perform(
@@ -179,7 +180,57 @@ class AppDataStack {
             }
         })
     }
- 
+    
+    static func deleteEmployee(withWhereClouse lastName: String, completion: @escaping (Bool) -> Void) {
+        CoreStore.perform(
+            asynchronous: { (transaction) -> Void in
+                transaction.deleteAll(
+                    From<Employee>(),
+                    Where("lastName", isEqualTo: lastName)
+                )
+        },
+            completion: { result in
+                switch result {
+                case .success(let hasDeleted):
+                    print("success! Has deleted? \(hasDeleted)")
+                    completion(true)
+                case .failure(let error):
+                    print(error)
+                    completion(false)
+                }
+        })
+    }
+
+    /**
+     Delete several objects at once: Pass Tuple or ObjectArray
+     delete<S>(_ objects: S) where S : Sequence, S.Iterator.Element : DynamicObject
+     
+      - parameter employees: Pass Model Array or Model Tuple to be deleted
+      - parameter completion: will return Bool value
+     
+     */
+    
+    static func deleteEmployees<T>(_ employees:T, completion: @escaping (Bool) -> Void) where T : Sequence, T.Iterator.Element : DynamicObject {
+        CoreStore.perform(
+            asynchronous: { (transaction) -> Void in
+                transaction.delete(employees)
+        },
+            completion: { result in
+                switch result {
+                case .success(let hasDeleted):
+                    print("success! Has deleted? \(hasDeleted)")
+                    completion(true)
+                case .failure(let error):
+                    print(error)
+                    completion(false)
+                }
+        })
+    }
+    
+    
+    /*
+     If you do not have references yet to the objects to be deleted, transactions have a deleteAll(...) method you can pass a query to:
+    */
     static func updateEmployee(identity: String, lastName: String, completion: @escaping (Bool) -> Void) {
         
         AppDataStack.dataStack.perform(

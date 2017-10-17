@@ -23,6 +23,7 @@
 		8482653D1F0A4A7C008DC915 /* EmployeeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482653C1F0A4A7C008DC915 /* EmployeeListViewController.swift */; };
 		8482653F1F0A54C0008DC915 /* AddEmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482653E1F0A54C0008DC915 /* AddEmployeeViewController.swift */; };
 		848265411F0A5577008DC915 /* AppDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848265401F0A5577008DC915 /* AppDataStack.swift */; };
+		84AEC8071F95E07D00C201CD /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEC8061F95E07D00C201CD /* TestViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,6 +58,8 @@
 		8482653C1F0A4A7C008DC915 /* EmployeeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeListViewController.swift; sourceTree = "<group>"; };
 		8482653E1F0A54C0008DC915 /* AddEmployeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEmployeeViewController.swift; sourceTree = "<group>"; };
 		848265401F0A5577008DC915 /* AppDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDataStack.swift; sourceTree = "<group>"; };
+		84AEC8061F95E07D00C201CD /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		84AEC8081F95E25900C201CD /* POC-Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "POC-Playground.playground"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +77,7 @@
 		84422F671F0A1EB3005A404F = {
 			isa = PBXGroup;
 			children = (
+				84AEC8081F95E25900C201CD /* POC-Playground.playground */,
 				84422F721F0A1EB3005A404F /* POC-CoreStore */,
 				84422F711F0A1EB3005A404F /* Products */,
 				848265351F0A3252008DC915 /* Frameworks */,
@@ -106,6 +110,7 @@
 				8445108B1F0B4913005561B0 /* MKUISwitch.swift */,
 				844510951F0BA5E9005561B0 /* EmpDetailViewController.swift */,
 				840B6B671F14F05A006E69FA /* EmployeeListCell.swift */,
+				84AEC8061F95E07D00C201CD /* TestViewController.swift */,
 			);
 			path = "POC-CoreStore";
 			sourceTree = "<group>";
@@ -220,6 +225,7 @@
 				840B6B651F14B2DA006E69FA /* Department.swift in Sources */,
 				8445108C1F0B4913005561B0 /* MKUISwitch.swift in Sources */,
 				840B6B5A1F14B1D3006E69FA /* POC-CoreStore.xcdatamodeld in Sources */,
+				84AEC8071F95E07D00C201CD /* TestViewController.swift in Sources */,
 				840B6B681F14F05A006E69FA /* EmployeeListCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

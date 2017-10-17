@@ -15,7 +15,7 @@ class EmployeeListViewController: UIViewController {
     
     let filterDepartments: [String] = ["Mobile","Web","Contant","Server","HR","Admin"]
     let filterSubDepartments: [String] = ["iOS","Android","Bussiness","Managment","Testing"]
-    let filterDesignations: [String] = ["ASE","SE","SSE","TL","STL","BA","PM","QA"]
+    let filterDesignations: [String] = ["ASE","SE","SSE","LSE","TL","STL","BA","PM","QA"]
     
     var selectedDepartment = ""
     var selectedSubDepartment = ""
@@ -29,6 +29,8 @@ class EmployeeListViewController: UIViewController {
     
     @IBOutlet weak var employeeTableView: UITableView!
     
+    @IBOutlet weak var editButton: UIBarButtonItem!
+    @IBOutlet weak var filterButton: UIBarButtonItem!
     
     var person: Employee = Employee()
     
@@ -93,6 +95,12 @@ class EmployeeListViewController: UIViewController {
     
     
     @IBAction func editButtonTuched(_ sender: UIBarButtonItem) {
+        
+        employeeTableView.setEditing(!employeeTableView.isEditing, animated: true)
+        employeeTableView.allowsMultipleSelectionDuringEditing = employeeTableView.isEditing
+//        self.deleteEmployees(["a","b","c"])
+        updateButtonsToMatchTableState()
+        self.employeeTableView.reloadData()
     }
 
     
@@ -234,12 +242,20 @@ extension EmployeeListViewController: UITableViewDataSource,UITableViewDelegate 
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "empCell") as! EmployeeListCell
         cell.employee = employeeList[indexPath.row]
+
         return cell
 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "empDetailsSegue", sender: indexPath)
+        if !(tableView.isEditing) {
+            self.performSegue(withIdentifier: "empDetailsSegue", sender: indexPath)
+        }else{
+            self.updateButtonsToMatchTableState()
+        }
+    }
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        self.updateEditButtonTitle()
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -259,5 +275,52 @@ extension EmployeeListViewController: UITableViewDataSource,UITableViewDelegate 
         }
     }
 
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
+    }
+
+//    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+////        tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+//        return true
+//    }
+//    
+//    func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath){
+////        tableView.deselectRow(at: indexPath, animated: false)
+//    }
+//    
+//    func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?){
+//        print("didEndEditingRowAt")
+//    }
+    
+    func updateButtonsToMatchTableState(){
+        if self.employeeTableView.isEditing {
+            
+        }
+        self.updateEditButtonTitle()
+    }
+    
+    func updateEditButtonTitle() {
+        let selectedRows = self.employeeTableView.indexPathsForSelectedRows
+        
+        let allItemsAreSelected = selectedRows?.count == self.employeeList.count
+        let noItemsAreSelected = selectedRows == nil
+        
+        if (allItemsAreSelected || noItemsAreSelected)
+        {
+            self.editButton.title = self.employeeTableView.isEditing ? "Delete All" : "Edit"
+        }else{
+            self.editButton.title = "Delete \(String(describing: selectedRows?.count ?? 0))"
+        }
+    }
+    
+//    func deleteEmployees<S>(_ objects: S) where S : Sequence, S.Iterator.Element : DynamicObject {
+//        
+//    }
+    
+    func deleteEmployees<S>(_ objects: S) where S : Sequence {
+        var empTuple = (objects)
+        print(empTuple)
+        
+    }
 
 }

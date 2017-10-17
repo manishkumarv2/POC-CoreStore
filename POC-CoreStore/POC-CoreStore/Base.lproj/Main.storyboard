@@ -76,7 +76,7 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="b4Z-mE-lR5">
                         <leftBarButtonItems>
-                            <barButtonItem systemItem="edit" id="jHf-wV-KC0">
+                            <barButtonItem title="Edit" id="jHf-wV-KC0">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="editButtonTuched:" destination="BYZ-38-t0r" id="7Iu-hL-uhg"/>
@@ -97,7 +97,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="editButton" destination="jHf-wV-KC0" id="sQW-ho-tSK"/>
                         <outlet property="employeeTableView" destination="InT-82-g7T" id="E74-y9-g38"/>
+                        <outlet property="filterButton" destination="WJr-r1-CRH" id="u7X-5o-Z8I"/>
                         <segue destination="xK8-PI-djX" kind="show" identifier="addEmpSegue" id="lrG-Jw-5eU"/>
                         <segue destination="Ygg-QY-878" kind="show" identifier="empDetailsSegue" id="A47-iE-owz"/>
                     </connections>
@@ -476,6 +478,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xNq-84-231" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="792.95352323838085"/>
+        </scene>
+        <!--Test View Controller-->
+        <scene sceneID="uAD-cg-hma">
+            <objects>
+                <viewController id="dDh-aA-e5L" customClass="TestViewController" customModule="POC_CoreStore" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9uo-eT-FBW"/>
+                        <viewControllerLayoutGuide type="bottom" id="vs8-Qu-o6e"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3eQ-q5-4PH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zb3-bG-p6q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1079" y="912"/>
         </scene>
     </scenes>
 </document>
