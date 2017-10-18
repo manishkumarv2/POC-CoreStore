@@ -26,7 +26,7 @@
     </entity>
     <elements>
         <element name="Department" positionX="-72" positionY="-135" width="128" height="118"/>
-        <element name="Employee" positionX="-252" positionY="-138" width="128" height="178"/>
+        <element name="Employee" positionX="-308" positionY="-153" width="128" height="178"/>
         <element name="Salary" positionX="-72" positionY="3" width="128" height="103"/>
     </elements>
 </model>

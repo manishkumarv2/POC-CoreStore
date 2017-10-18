@@ -53,6 +53,12 @@ class EmployeeListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        LocalManager.jsonFetcher(name: "")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         employeeTableView.dataSource = self
         employeeTableView.delegate = self
         

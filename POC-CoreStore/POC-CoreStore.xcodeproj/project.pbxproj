@@ -24,6 +24,8 @@
 		8482653D1F0A4A7C008DC915 /* EmployeeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482653C1F0A4A7C008DC915 /* EmployeeListViewController.swift */; };
 		8482653F1F0A54C0008DC915 /* AddEmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8482653E1F0A54C0008DC915 /* AddEmployeeViewController.swift */; };
 		848265411F0A5577008DC915 /* AppDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848265401F0A5577008DC915 /* AppDataStack.swift */; };
+		848884291F976F5C0053B42F /* employee.json in Resources */ = {isa = PBXBuildFile; fileRef = 848884281F976F5C0053B42F /* employee.json */; };
+		8488842B1F9776C70053B42F /* LocalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8488842A1F9776C70053B42F /* LocalManager.swift */; };
 		84AEC8071F95E07D00C201CD /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEC8061F95E07D00C201CD /* TestViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +63,8 @@
 		8482653E1F0A54C0008DC915 /* AddEmployeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEmployeeViewController.swift; sourceTree = "<group>"; };
 		848265401F0A5577008DC915 /* AppDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDataStack.swift; sourceTree = "<group>"; };
 		848884271F9764920053B42F /* POC-CoreStore 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "POC-CoreStore 2.xcdatamodel"; sourceTree = "<group>"; };
+		848884281F976F5C0053B42F /* employee.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = employee.json; sourceTree = "<group>"; };
+		8488842A1F9776C70053B42F /* LocalManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalManager.swift; sourceTree = "<group>"; };
 		84AEC8061F95E07D00C201CD /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		84AEC8081F95E25900C201CD /* POC-Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "POC-Playground.playground"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,6 +102,7 @@
 		84422F721F0A1EB3005A404F /* POC-CoreStore */ = {
 			isa = PBXGroup;
 			children = (
+				848884281F976F5C0053B42F /* employee.json */,
 				840B6B5B1F14B2DA006E69FA /* Salary.swift */,
 				840B6B5D1F14B2DA006E69FA /* Employee.swift */,
 				840B6B5F1F14B2DA006E69FA /* Department.swift */,
@@ -115,6 +120,7 @@
 				840B6B671F14F05A006E69FA /* EmployeeListCell.swift */,
 				84AEC8061F95E07D00C201CD /* TestViewController.swift */,
 				843B55421F972C31005343A0 /* ArrayPro.swift */,
+				8488842A1F9776C70053B42F /* LocalManager.swift */,
 			);
 			path = "POC-CoreStore";
 			sourceTree = "<group>";
@@ -190,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84422F7E1F0A1EB3005A404F /* LaunchScreen.storyboard in Resources */,
+				848884291F976F5C0053B42F /* employee.json in Resources */,
 				84422F7B1F0A1EB3005A404F /* Assets.xcassets in Resources */,
 				84422F791F0A1EB3005A404F /* Main.storyboard in Resources */,
 			);
@@ -232,6 +239,7 @@
 				840B6B5A1F14B1D3006E69FA /* POC-CoreStore.xcdatamodeld in Sources */,
 				84AEC8071F95E07D00C201CD /* TestViewController.swift in Sources */,
 				840B6B681F14F05A006E69FA /* EmployeeListCell.swift in Sources */,
+				8488842B1F9776C70053B42F /* LocalManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

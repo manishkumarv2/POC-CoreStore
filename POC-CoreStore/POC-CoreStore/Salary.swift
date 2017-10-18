@@ -20,6 +20,9 @@ public class Salary: NSManagedObject, ImportableObject {
     
     public typealias ImportSource = [String: Any]
     
+    
+}
+extension Salary{
     @NSManaged public var fromDate: NSDate?
     @NSManaged public var amount: Int16
     @NSManaged public var toDate: NSDate?

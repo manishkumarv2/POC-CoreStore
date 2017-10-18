@@ -47,12 +47,12 @@ class AddEmployeeViewController: UIViewController {
        let uuid = UUID().uuidString
         
         empDic = ["id":uuid,
-                 "fName": firstNameTxt.text,
-                  "lName": lastNameTxt.text ,
-                  "bod": birthDate,
+                 "firstName": firstNameTxt.text ?? "",
+                  "lastName": lastNameTxt.text ?? "",
+                  "dob": birthDate,
                   "gender": gender,
                   "salary": salaryTxt.text?.hashValue,
-                  "empNumber": Int16(empNumberTxt.text!),
+                  "empNo": Int16(empNumberTxt.text!),
                   "department": departmentTxt.text,
                   "subDepartment": subDepartmentTxt.text,
                   "designation": designationTxt.text

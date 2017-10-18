@@ -10,8 +10,24 @@ import Foundation
 import CoreStore
 
 @objc(Employee)
-public class Employee: NSManagedObject, ImportableObject {
+public class Employee: NSManagedObject, ImportableUniqueObject {
  
+    public typealias ImportSource = [String: Any]
+    
+    public class var uniqueIDKeyPath: String {
+        return #keyPath(Employee.empNo)
+    }
+    public var uniqueIDValue: Int {
+        get { return Int(self.empNo) }
+        set { self.empNo = Int16(newValue) }
+    }
+    public class func uniqueID(from source: ImportSource, in transaction: BaseDataTransaction) throws -> Int? {
+        if let empNo = source["empNo"] as? Int{
+            return empNo
+        }
+        return 0
+    }
+    
     /**
      Implements the actual importing of data from `source`. Implementers should pull values from `source` and assign them to the receiver's attributes. Note that throwing from this method will cause subsequent imports that are part of the same `importObjects(:sourceArray:)` call to be cancelled.
      
@@ -19,13 +35,13 @@ public class Employee: NSManagedObject, ImportableObject {
      - parameter transaction: the transaction that invoked the import. Use the transaction to fetch or create related objects if needed.
      */
    public  func didInsert(from source: ImportSource, in transaction: BaseDataTransaction) throws {
-        self.identity = source["id"] as? String
-        self.firstName = source["fName"] as? String
-        self.lastName = source["lName"] as? String
+        self.firstName = source["firstName"] as? String
+        self.lastName = source["lastName"] as? String
         self.gender = Int16((source["gender"] as? Int16)!)
         self.hireDate = NSDate()
-        self.birthDate = source["bod"] as? NSDate
-        self.empNo = Int16((source["empNumber"] as? Int16)!)
+        self.birthDate = NSDate() // source["dob"] as? NSDate
+        self.empNo = Int16((source["empNo"] as? Int)!)
+        self.identity = String(self.empNo)
     
 //    self.departure = transaction.importObject(Into(Station), source: source["departure"] as? [NSString: AnyObject]) // one-to-one
     
@@ -34,9 +50,34 @@ public class Employee: NSManagedObject, ImportableObject {
     
     }
 
+    func shouldInsert(from source: ImportSource, in transaction: BaseDataTransaction) -> Bool{
+        return true
+    }
+    func shouldUpdate(from source: ImportSource, in transaction: BaseDataTransaction) -> Bool{
+        return true
+    }
+    func uniqueID(from source: ImportSource, in transaction: BaseDataTransaction) throws -> UniqueIDType?{
+        return Int((source["empNo"] as? Int)!)
+    }
     
-    public typealias ImportSource = [String: Any]
+    public func update(from source: ImportSource, in transaction: BaseDataTransaction) throws{
+        self.identity = source["id"] as? String
+        self.firstName = source["firstName"] as? String
+        self.lastName = source["lastName"] as? String
+        self.gender = Int16((source["gender"] as? Int16)!)
+        self.hireDate = NSDate()
+        self.birthDate = NSDate() // source["dob"] as? NSDate
+        self.empNo = Int16((source["empNo"] as? Int)!)
+        
+        //    self.departure = transaction.importObject(Into(Station), source: source["departure"] as? [NSString: AnyObject]) // one-to-one
+        
+        self.department = try! transaction.importObject(Into<Department>(), source: source)
+        self.salary = try! transaction.importObject(Into<Salary>(), source: source)
+    }
 
+}
+
+extension Employee {
     @NSManaged public var birthDate: NSDate?
     @NSManaged public var empNo: Int16
     @NSManaged public var firstName: String?
@@ -46,6 +87,4 @@ public class Employee: NSManagedObject, ImportableObject {
     @NSManaged public var lastName: String?
     @NSManaged public var department: Department?
     @NSManaged public var salary: Salary?
-    
-    
 }

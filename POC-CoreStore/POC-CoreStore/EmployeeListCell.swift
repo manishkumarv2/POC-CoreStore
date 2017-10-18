@@ -32,9 +32,9 @@ class EmployeeListCell: UITableViewCell {
             self.department.text = departmentName
         }
         
-//        if let employeeID = self.employee.empNo as? Int16 {
-//            self.empID.text = "\(employeeID)"
-//        }
+        if let employeeID = self.employee.empNo as? Int16 {
+            self.empID.text = "\(employeeID)"
+        }
         
         if let designation = self.employee.department?.designation {
             self.empID.text = designation

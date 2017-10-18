@@ -29,9 +29,11 @@ class EmpDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         print("ViewDIDLoad")
-        updateEmployee()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        updateEmployee()
+    }
     
     private func fetchEmployeeByID(){
         AppDataStack.fetchEmployee(identity: employeeId, completion: { (emp) in
