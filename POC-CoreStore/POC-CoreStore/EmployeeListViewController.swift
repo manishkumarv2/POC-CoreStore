@@ -95,12 +95,14 @@ class EmployeeListViewController: UIViewController {
     
     
     @IBAction func editButtonTuched(_ sender: UIBarButtonItem) {
-        
+//        if let selectedPath = self.employeeTableView.indexPathsForSelectedRows{
+//            self.deleteEmployees(indexPaths: selectedPath)
+//        }
+        self.deleteEmployees()
         employeeTableView.setEditing(!employeeTableView.isEditing, animated: true)
         employeeTableView.allowsMultipleSelectionDuringEditing = employeeTableView.isEditing
-//        self.deleteEmployees(["a","b","c"])
         updateButtonsToMatchTableState()
-        self.employeeTableView.reloadData()
+        if employeeTableView.isEditing {self.employeeTableView.reloadData()}
     }
 
     
@@ -293,9 +295,9 @@ extension EmployeeListViewController: UITableViewDataSource,UITableViewDelegate 
 //    }
     
     func updateButtonsToMatchTableState(){
-        if self.employeeTableView.isEditing {
-            
-        }
+//        if self.employeeTableView.isEditing {
+//            
+//        }
         self.updateEditButtonTitle()
     }
     
@@ -317,10 +319,22 @@ extension EmployeeListViewController: UITableViewDataSource,UITableViewDelegate 
 //        
 //    }
     
-    func deleteEmployees<S>(_ objects: S) where S : Sequence {
-        var empTuple = (objects)
-        print(empTuple)
-        
+    func deleteEmployees() {
+        if let selectedRows = self.employeeTableView.indexPathsForSelectedRows{
+            var selectedEmplyoees: [Employee] = []
+            for indexPath in selectedRows {
+                selectedEmplyoees.append(self.employeeList[indexPath.row])
+            }
+            AppDataStack.deleteEmployees(selectedEmplyoees) { (success) in
+                if success {
+                    print("Multiple Delete success \(success)")
+                    self.employeeTableView.beginUpdates()
+                    self.employeeTableView.deleteRows(at: selectedRows, with: .none)
+                    _ = self.employeeList.remove(at: selectedEmplyoees)
+                    self.employeeTableView.endUpdates()
+                }
+            }
+        }
     }
 
 }
