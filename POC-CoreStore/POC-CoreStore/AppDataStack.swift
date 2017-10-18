@@ -11,8 +11,11 @@ import CoreStore
 
 class AppDataStack {
     
-    static let dataStack = DataStack(xcodeModelName: "POC-CoreStore") // keep reference to the stack
-    
+//    static let dataStack = DataStack(xcodeModelName: "POC-CoreStore") // keep reference to the stack
+    static let dataStack = DataStack(
+        xcodeModelName: "POC-CoreStore", // loads from the "POC-CoreStore.xcdatamodeld" file
+        migrationChain: ["POC-CoreStore", "POC-CoreStore 2"] // model versions for progressive migrations
+    )
     static func CreateCoreStore() {
         
         let sqLiteStore = SQLiteStore(fileName: "POC-CoreStore.sqlite",

@@ -60,6 +60,7 @@
 		8482653C1F0A4A7C008DC915 /* EmployeeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeListViewController.swift; sourceTree = "<group>"; };
 		8482653E1F0A54C0008DC915 /* AddEmployeeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEmployeeViewController.swift; sourceTree = "<group>"; };
 		848265401F0A5577008DC915 /* AppDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDataStack.swift; sourceTree = "<group>"; };
+		848884271F9764920053B42F /* POC-CoreStore 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "POC-CoreStore 2.xcdatamodel"; sourceTree = "<group>"; };
 		84AEC8061F95E07D00C201CD /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		84AEC8081F95E25900C201CD /* POC-Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "POC-Playground.playground"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -410,9 +411,10 @@
 		848265391F0A32FB008DC915 /* POC-CoreStore.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				848884271F9764920053B42F /* POC-CoreStore 2.xcdatamodel */,
 				8482653A1F0A32FB008DC915 /* POC-CoreStore.xcdatamodel */,
 			);
-			currentVersion = 8482653A1F0A32FB008DC915 /* POC-CoreStore.xcdatamodel */;
+			currentVersion = 848884271F9764920053B42F /* POC-CoreStore 2.xcdatamodel */;
 			path = "POC-CoreStore.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
