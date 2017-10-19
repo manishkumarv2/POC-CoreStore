@@ -11,24 +11,22 @@ import Foundation
 extension Array {
 
     mutating func remove<T>(at indexes: [T]) -> Void {
-//        var isDeleted = false
         if let indexes = indexes as? [IndexPath] {
             for index in indexes {
                 remove(at: index.row)
-//                isDeleted = true
             }
         }else if let intValues = indexes as? [Int] {
             for index in intValues.sorted(by: >) {
                 remove(at: index)
-//                isDeleted = true
             }
-        } else if let objectValues = indexes as? [Employee] {
-            let arrayResult = objectValues.filter { element in
+        }
+        else if let objectValues = indexes as? [Employee] {
+            let array = self as! [Employee]
+            let arrayResult = array.filter { element in
                 return !objectValues.contains(element)
             }
             print(arrayResult)
         }
-//        return isDeleted
     }
     
 //    mutating func remove(at indexes: [Int]) {
@@ -37,9 +35,13 @@ extension Array {
 //        }
 //    }
 //    
-//    mutating func remove(at indexes: [IndexPath]) {
-//        for index in indexes {
-//            remove(at: index.row)
+//    mutating func remove(at employees: [Employee]) {
+//        for employee in employees {
+////            remove(at: index.row)
+////            self.contains(where: employee)
+////            remove(at: self.indexOf(employee))
+//            let setArray = Set<Employee>(self)
+//            self = setArray.subtracting(Set(employees))
 //        }
 //    }
 }

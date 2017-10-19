@@ -331,12 +331,12 @@ extension EmployeeListViewController: UITableViewDataSource,UITableViewDelegate 
             for indexPath in selectedRows {
                 selectedEmplyoees.append(self.employeeList[indexPath.row])
             }
+            self.employeeList.remove(at: selectedEmplyoees)
             AppDataStack.deleteEmployees(selectedEmplyoees) { (success) in
                 if success {
                     print("Multiple Delete success \(success)")
                     self.employeeTableView.beginUpdates()
                     self.employeeTableView.deleteRows(at: selectedRows, with: .none)
-                    _ = self.employeeList.remove(at: selectedEmplyoees)
                     self.employeeTableView.endUpdates()
                 }
             }
