@@ -11,6 +11,10 @@ import UIKit
 
 class EmpDetailViewController: UIViewController {
     
+    
+//    var employeeObjectMonitor = AppDataStack.dataStack.monitorObject(Employee)
+    
+    
     private var employee: Employee! {
         didSet{
             if detailTextView != nil {

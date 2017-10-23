@@ -119,6 +119,27 @@ class AppDataStack {
         
     }
     
+    static func fetchMonitorEmployee() -> ListMonitor<Employee> {
+        let employee = dataStack.monitorList(
+            From(Employee.self),
+            OrderBy(.ascending("firstName"))
+        )
+        return employee
+    }
+    
+    static func fetchMonitorEmployee(predicate: NSPredicate) -> ListMonitor<Employee>{
+        let descriptor: NSSortDescriptor = NSSortDescriptor(key: "lastName", ascending: true)
+        
+        let employee = dataStack.monitorList(
+            From<Employee>(),
+            Where(predicate),
+            OrderBy(descriptor)
+            )
+        return employee
+        
+    }
+
+    
     static func fetchEmployee(whereClouse: String , whereClouse2: String) -> [Employee] {
         
 
@@ -214,7 +235,7 @@ class AppDataStack {
      */
     
     static func deleteEmployees<T>(_ employees:T, completion: @escaping (Bool) -> Void) where T : Sequence, T.Iterator.Element : DynamicObject {
-        CoreStore.perform(
+        dataStack.perform(
             asynchronous: { (transaction) -> Void in
                 transaction.delete(employees)
         },
