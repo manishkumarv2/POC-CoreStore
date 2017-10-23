@@ -37,7 +37,7 @@ class AppDataStack {
         AppDataStack.dataStack.perform(
             asynchronous: { (transaction) -> Void in
                 let json: [String: Any] = person
-                   _ = try! transaction.importObject(
+                   _ = try! transaction.importUniqueObject(
                         Into<Employee>(),
                         source: json
                 )
