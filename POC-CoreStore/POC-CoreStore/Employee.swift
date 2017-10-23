@@ -40,7 +40,7 @@ public class Employee: NSManagedObject, ImportableUniqueObject {
         self.gender = Int16((source["gender"] as? Int16)!)
         self.hireDate = NSDate()
         self.birthDate = NSDate() // source["dob"] as? NSDate
-        self.empNo = Int16((source["empNo"] as? Int)!)
+        self.empNo = Int16((source["empNo"] as? Int16)!)
         self.identity = String(self.empNo)
     
 //    self.departure = transaction.importObject(Into(Station), source: source["departure"] as? [NSString: AnyObject]) // one-to-one

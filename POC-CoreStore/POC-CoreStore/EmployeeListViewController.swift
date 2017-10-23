@@ -12,6 +12,12 @@ import CoreStore
 
 class EmployeeListViewController: UIViewController {
     
+    var employeeListMonitor = AppDataStack.dataStack.monitorList(
+        From(Employee.self),
+        OrderBy(.ascending("firstName"))
+    )
+    
+    
     
     let filterDepartments: [String] = ["Mobile","Web","Contant","Server","HR","Admin"]
     let filterSubDepartments: [String] = ["iOS","Android","Bussiness","Managment","Testing"]
@@ -46,26 +52,33 @@ class EmployeeListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.employeeListMonitor.addObserver(self)
+        
         AppDataStack.CreateCoreStore()
+        LocalManager.jsonFetcher(name: "")
         self.view.addSubview(self.pickerViewTextField)
         self.pickerViewTextField.backgroundColor = UIColor.red
+        
+//        if employeeList.count > 0{
+//            employeeList.removeAll()
+//        }
+//        employeeList = AppDataStack.fetchAllEmployee()
+        
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        LocalManager.jsonFetcher(name: "")
+        employeeTableView.dataSource = self
+        employeeTableView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        employeeTableView.dataSource = self
-        employeeTableView.delegate = self
+       
         
-        if employeeList.count > 0{
-            employeeList.removeAll()
-        }
-        employeeList = AppDataStack.fetchAllEmployee()
     }
     
     @IBAction func AddEmployee(_ sender: UIBarButtonItem) {
@@ -75,8 +88,8 @@ class EmployeeListViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "empDetailsSegue" {
             let indexPath = sender as! IndexPath
-            let emp = employeeList[indexPath.row]
-            
+//            let emp = employeeList[indexPath.row]
+            let emp = self.employeeListMonitor.objectsInSection(0)[indexPath.row]
             let viewC = segue.destination as! EmpDetailViewController
             if let id = emp.identity{
                 viewC.employeeId = id
@@ -178,17 +191,20 @@ class EmployeeListViewController: UIViewController {
     
 }
 
-//extension EmployeeListViewController: ListObserver {
-//    typealias ListEntityType = Employee
-//
-//    func listMonitorDidChange(_ monitor: ListMonitor<Employee>) {
-//        // ...
-//    }
-//    
-//    func listMonitorDidRefetch(_ monitor: ListMonitor<Employee>) {
-//        // ...
-//    }
-//}
+extension EmployeeListViewController: ListObserver {
+    
+    typealias ListEntityType = Employee
+
+    func listMonitorDidChange(_ monitor: ListMonitor<Employee>) {
+        print("DidChange - \(monitor)")
+        self.employeeTableView.reloadData()
+    }
+    
+    func listMonitorDidRefetch(_ monitor: ListMonitor<Employee>) {
+        print("DidRefetch - \(monitor)")
+        self.employeeTableView.reloadData()
+    }
+}
 
 extension EmployeeListViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -242,14 +258,16 @@ extension EmployeeListViewController: UIPickerViewDelegate, UIPickerViewDataSour
 extension EmployeeListViewController: UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return employeeList.count
+//        return employeeList.count
+        return self.employeeListMonitor.numberOfObjects()
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "empCell") as! EmployeeListCell
-        cell.employee = employeeList[indexPath.row]
+        //cell.employee = employeeList[indexPath.row]
+        cell.employee = self.employeeListMonitor.objectsInSection(indexPath.section)[indexPath.row]
 
         return cell
 
@@ -269,13 +287,14 @@ extension EmployeeListViewController: UITableViewDataSource,UITableViewDelegate 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             print("Deleted")
-            let employee = self.employeeList[indexPath.row]
+//            let employee = self.employeeList[indexPath.row]
+            let employee = self.employeeListMonitor.objectsInSection(indexPath.section)[indexPath.row]
             AppDataStack.deleteEmployee(employee: employee, completion: { (success,error) in
                 if success {
-                    self.employeeTableView.beginUpdates()
-                    self.employeeList.remove(at: indexPath.row)
-                    self.employeeTableView.deleteRows(at: [indexPath], with: .automatic)
-                    self.employeeTableView.endUpdates()
+//                    self.employeeTableView.beginUpdates()
+////                    self.employeeList.remove(at: indexPath.row)
+//                    self.employeeTableView.deleteRows(at: [indexPath], with: .automatic)
+//                    self.employeeTableView.endUpdates()
                 }else{
                     print("Error \(String(describing: error))")
                 }
