@@ -22,7 +22,7 @@ class FetchAndQueryViewController: UIViewController, UITableViewDataSource, UITa
                 
                 return AppDataStack.sharedInstance.queryValue(
                     From<Employee>(),
-                    Select<NSNumber>(.count(#keyPath(Employee.empNo)))
+                    Select<NSNumber>(.count("empNo"))
                     )!
         }
         ),
@@ -30,22 +30,45 @@ class FetchAndQueryViewController: UIViewController, UITableViewDataSource, UITa
             title: "Number of Female Employees",
             query: { () -> Any in
                 
-                return AppDataStack.sharedInstance.queryAttributes(
+                return AppDataStack.sharedInstance.queryValue(
                     From<Employee>(),
-                    Select(.count(#keyPath(Employee.empNo), as: "Female Emp Count")),
+                    Select<NSNumber>(.count("firstName", as: "Female Emp Count")),
                     Where("gender == %d", 0)
                     )!
         }
         ),
         (
-            title: "iOS Team",
+            title: "All Departments",
+            query: { () -> Any in
+                
+                return AppDataStack.sharedInstance.queryAttributes(
+                    From<Department>(),
+                    Select<NSDictionary>(#keyPath(Department.name), #keyPath(Department.sub)),
+                    GroupBy(#keyPath(Department.name), #keyPath(Department.sub)),
+                    OrderBy(.ascending(#keyPath(Department.name)))
+                    )!
+        }
+        ),
+        (
+            title: "iOS Employees",
             query: { () -> Any in
                 
                 return AppDataStack.sharedInstance.queryAttributes(
                     From<Employee>(),
-                    Select(.count("empNo", as: "iOS Team Count")),
+                    Select(#keyPath(Employee.department.sub), #keyPath(Employee.empNo), #keyPath(Employee.firstName)),
                     Where("department.sub == %@", "iOS")
-                )!
+                    )!
+        }
+        ),
+        (
+            title: "Web Employees",
+            query: { () -> Any in
+                
+                return AppDataStack.sharedInstance.queryAttributes(
+                    From<Employee>(),
+                    Select(#keyPath(Employee.department.sub), #keyPath(Employee.empNo), #keyPath(Employee.firstName)),
+                    Where("department.sub == %@", "Web")
+                    )!
         }
         )
     ]

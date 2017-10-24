@@ -63,7 +63,7 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="xxz-4F-wAC">
-                        <barButtonItem key="leftBarButtonItem" title="Query" id="zHp-39-FW5">
+                        <barButtonItem key="rightBarButtonItem" title="Query" id="zHp-39-FW5">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="queryButtonTapped:" destination="0P0-9H-wvF" id="3mt-02-jof"/>
