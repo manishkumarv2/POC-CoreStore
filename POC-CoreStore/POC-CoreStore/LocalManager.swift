@@ -21,7 +21,7 @@ class LocalManager {
                 {
                     if let employees : NSArray = jsonResult["employees"] as? NSArray
                     {
-                        AppDataStack.dataStack.perform(
+                        AppDataStack.sharedInstance.perform(
                             asynchronous: { (transaction) -> Void in
                                 let jsonArray: [[String: Any]] = employees as! [[String : Any]]
                                 for json in jsonArray {

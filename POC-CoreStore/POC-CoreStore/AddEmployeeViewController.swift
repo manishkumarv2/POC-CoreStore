@@ -44,18 +44,23 @@ class AddEmployeeViewController: UIViewController {
     }
     
     @IBAction func createEmployee(_ sender: Any) {
-       let uuid = UUID().uuidString
+//       let uuid = UUID().uuidString
         
-        empDic = ["id":uuid,
+        empDic = ["id":empNumberTxt.text!,
                  "firstName": firstNameTxt.text ?? "",
                   "lastName": lastNameTxt.text ?? "",
                   "dob": birthDate,
                   "gender": gender,
-                  "salary": salaryTxt.text?.hashValue,
+                  "salary": [
+                    "amount":salaryTxt.text?.hashValue,
+                    ],
                   "empNo": Int16(empNumberTxt.text!),
-                  "department": departmentTxt.text,
-                  "subDepartment": subDepartmentTxt.text,
-                  "designation": designationTxt.text
+                  "department" : [
+                    "name": departmentTxt.text,
+                    "sub": subDepartmentTxt.text,
+                    "designation": designationTxt.text,
+                    "id" : 1
+                    ]
         ]
         
         AppDataStack.createEmployee(person: empDic)

@@ -16,7 +16,7 @@ public class Department: NSManagedObject, ImportableObject {
         
         if let source = source["department"] as? [String:Any] {
             self.name = source["name"] as? String
-            self.number = Int16((source["id"] as? Int16)!)
+            self.number = Int16(Int((source["id"] as? Int)!))
             self.designation = source["designation"] as? String
             self.sub = source["sub"] as? String
     //        employee?.department = self

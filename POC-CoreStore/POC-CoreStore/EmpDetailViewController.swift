@@ -8,16 +8,51 @@
 
 import Foundation
 import UIKit
+import CoreStore
 
-class EmpDetailViewController: UIViewController {
+class EmpDetailViewController: UIViewController, ObjectObserver {
     
-    private var employee: Employee! {
-        didSet{
-            if detailTextView != nil {
-                updateEmployee()
+    
+    var employee: Employee? {
+        
+        get {
+            
+            return self.monitor?.object
+        }
+        set {
+            
+            guard self.monitor?.object != newValue else {
+                
+                return
+            }
+            
+            if let employee = newValue {
+                
+                self.monitor = AppDataStack.sharedInstance.monitorObject(employee)
+            }
+            else {
+                
+                self.monitor = nil
             }
         }
     }
+    
+    // MARK: NSObject
+    
+    deinit {
+        
+        self.monitor?.removeObserver(self)
+    }
+    
+    var monitor: ObjectMonitor<Employee>?
+    
+//    private var employee: Employee! {
+//        didSet{
+//            if detailTextView != nil {
+//                updateEmployee()
+//            }
+//        }
+//    }
     
     var employeeId: String = "" {
         didSet(id){
@@ -28,9 +63,23 @@ class EmpDetailViewController: UIViewController {
     @IBOutlet weak var detailTextView: UITextView!
     
     override func viewDidLoad() {
-        print("ViewDIDLoad")
+        print("viewDidLoad \(self)")
+        self.monitor?.addObserver(self)
     }
 
+    // MARK: ObjectObserver
+    
+    func objectMonitor(_ monitor: ObjectMonitor<Employee>, didUpdateObject object: Employee, changedPersistentKeys: Set<KeyPath>) {
+        
+        print(changedPersistentKeys)
+        updateEmployee()
+    }
+    
+    func objectMonitor(_ monitor: ObjectMonitor<Employee>, didDeleteObject object: Employee) {
+        print("\(object)")
+    }
+
+    
     override func viewWillAppear(_ animated: Bool) {
         updateEmployee()
     }
@@ -45,28 +94,46 @@ class EmpDetailViewController: UIViewController {
     
     func updateEmployee(){
         var details: String = "Name : "
-        details = "\(details) \(String(describing: employee.firstName!)) "
-        details = "\(details) \(String(describing: employee.lastName!)) \n"
-        let gender = employee.gender == 1 ? "Male" : "Female"
+        if let firstName = employee?.firstName{
+            details = "\(details) \(String(describing: firstName)) "
+        }
+        if let lastName = employee?.lastName{
+            details = "\(details) \(String(describing: lastName)) \n"
+        }
+        let gender = employee?.gender == 1 ? "Male" : "Female"
         details = "\(details) Gender : \(gender) \n"
-        details = "\(details) Depatment : \(employee.department!.name!) \n"
-        details = "\(details) Salary : \(String(describing: employee.salary!.amount)) \n"
+        
+        if let department = employee?.department{
+                if let name = department.name{
+                    details = "\(details) Depatment : \(String(describing: name)) \n"
+            }
+        }
+        if let salary = employee?.salary{
+            details = "\(details) Salary : \(String(describing: salary.amount)) \n"
+        }
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = DateFormatter.Style.medium
         dateFormatter.timeStyle = DateFormatter.Style.none
-        let dob = dateFormatter.string(from: employee.birthDate! as Date)
-        
-        details = "\(details) BirthDate : \(dob) \n"
-        
+        if let birthDate = employee?.birthDate {
+            let dob = dateFormatter.string(from: birthDate as Date)
+            details = "\(details) BirthDate : \(dob) \n"
+        }
         detailTextView.text = details
+        detailTextView.backgroundColor = UIColor.red
+        detailTextView.tintColor = UIColor.green
+        print(detailTextView.text)
     }
     
     @IBAction func editThePerson(_ sender: Any) {
-        AppDataStack.updateEmployee(identity: employeeId, lastName: "Kumar") { (result) in
+        
+        let lastName = ((employee?.gender != 0) ? "Sir" : "Madam")
+        AppDataStack.updateEmployee(identity: employeeId, lastName: lastName) { (result) in
             if result {
-                self.clearAll()
-                self.fetchEmployeeByID()
+                // No Need to call These when you use ObjectObserver
+                // It was usefull when you are not Ussing ObjectObserver
+//                self.clearAll()
+//                self.fetchEmployeeByID()
             }
         }
     }
