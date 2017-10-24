@@ -163,23 +163,6 @@ class AppDataStack {
         }
     }
     
-    //MARK: - Query methods
-    
-    static func fetchEmployeeWithSelect() -> [[String: Any]] {
-        
-        let employee = dataStack.queryAttributes(
-            From<Employee>(),
-            Select(.count("empNo", as: "Employee Count")),
-            Where("department.sub == %@", "iOS")
-//            Tweak { (fetchRequest) -> Void in
-//                fetchRequest.propertiesToFetch?.append(contentsOf: ["firstName"])
-//                fetchRequest.returnsObjectsAsFaults = false
-//                fetchRequest.includesSubentities = true
-//            }
-        ) ?? []
-        return employee
-    }
-    
 //    static func deleteEmployee(employee: Employee) {
 //        AppDataStack.dataStack.perform(asynchronous: { (transaction) -> Void in
 //            transaction.delete(employee)
