@@ -12,7 +12,7 @@ import CoreStore
 class AppDataStack {
     
 //    static let dataStack = DataStack(xcodeModelName: "POC-CoreStore") // keep reference to the stack
-    static let dataStack = DataStack(
+    static let sharedInstance = DataStack(
         xcodeModelName: "POC-CoreStore", // loads from the "POC-CoreStore.xcdatamodeld" file
         migrationChain: ["POC-CoreStore", "POC-CoreStore 2"] // model versions for progressive migrations
     )
@@ -23,7 +23,7 @@ class AppDataStack {
         print(sqLiteStore.fileURL)
         
         do {
-            try AppDataStack.dataStack.addStorageAndWait(sqLiteStore)
+            try AppDataStack.sharedInstance.addStorageAndWait(sqLiteStore)
         }
         catch { // ...
             print("CreateCoreStore() error")
@@ -34,7 +34,7 @@ class AppDataStack {
     
     static func createEmployee(person: [String:Any]) {
         
-        AppDataStack.dataStack.perform(
+        AppDataStack.sharedInstance.perform(
             asynchronous: { (transaction) -> Void in
                 let json: [String: Any] = person
                    _ = try! transaction.importUniqueObject(
@@ -81,7 +81,7 @@ class AppDataStack {
     }
     
     static func fetchAllEmployee() -> [Employee] {
-        if let people: [Employee] = AppDataStack.dataStack.fetchAll(
+        if let people: [Employee] = AppDataStack.sharedInstance.fetchAll(
                 From(Employee.self),
                 OrderBy(.ascending("empNo"))
             ) {
@@ -94,7 +94,7 @@ class AppDataStack {
     static func fetchEmployee(whereClouse: String) -> [Employee] {
         let descriptor: NSSortDescriptor = NSSortDescriptor(key: "department.designation", ascending: true)
         print(whereClouse)
-        let employee = dataStack.fetchAll(
+        let employee = sharedInstance.fetchAll(
             From<Employee>(),
             Where(whereClouse),
 //            OrderBy(.ascending("firstName"))
@@ -109,7 +109,7 @@ class AppDataStack {
 //        let predicate = NSPredicate(format: "ANY department.sub == %@", "iOS")
         
         
-        let employee = dataStack.fetchAll(
+        let employee = sharedInstance.fetchAll(
             From<Employee>(),
             Where(predicate),
             //            OrderBy(.ascending("firstName"))
@@ -120,7 +120,7 @@ class AppDataStack {
     }
     
     static func fetchMonitorEmployee() -> ListMonitor<Employee> {
-        let employee = dataStack.monitorList(
+        let employee = sharedInstance.monitorList(
             From(Employee.self),
             OrderBy(.ascending("firstName"))
         )
@@ -130,7 +130,7 @@ class AppDataStack {
     static func fetchMonitorEmployee(predicate: NSPredicate) -> ListMonitor<Employee>{
         let descriptor: NSSortDescriptor = NSSortDescriptor(key: "lastName", ascending: true)
         
-        let employee = dataStack.monitorList(
+        let employee = sharedInstance.monitorList(
             From<Employee>(),
             Where(predicate),
             OrderBy(descriptor)
@@ -143,7 +143,7 @@ class AppDataStack {
     static func fetchEmployee(whereClouse: String , whereClouse2: String) -> [Employee] {
         
 
-        let employee = dataStack.fetchAll(
+        let employee = sharedInstance.fetchAll(
             From<Employee>(),
             Where(whereClouse) && Where(whereClouse2),
             OrderBy(.ascending("firstName"))
@@ -152,7 +152,7 @@ class AppDataStack {
     }
     
     static func fetchEmployee(identity: String, completion: (Employee!) -> Void) {
-        if let employees = dataStack.fetchAll(
+        if let employees = sharedInstance.fetchAll(
             From<Employee>(),
             Where("identity == '\(identity)'")
             ) {
@@ -175,7 +175,7 @@ class AppDataStack {
 //    MARK:- DELETE
    
     static func deleteEmployee(employee: Employee) {
-        AppDataStack.dataStack.perform(
+        AppDataStack.sharedInstance.perform(
             asynchronous: { (transaction) -> Bool in
                 transaction.delete(employee)
                 return transaction.hasChanges
@@ -189,7 +189,7 @@ class AppDataStack {
     
     
     static func deleteEmployee(employee: Employee, completion:@escaping (Bool,Error?) -> Void) {
-        AppDataStack.dataStack.perform(
+        AppDataStack.sharedInstance.perform(
             asynchronous: { (transaction) -> Bool in
                 transaction.delete(employee)
                 return transaction.hasChanges
@@ -235,7 +235,7 @@ class AppDataStack {
      */
     
     static func deleteEmployees<T>(_ employees:T, completion: @escaping (Bool) -> Void) where T : Sequence, T.Iterator.Element : DynamicObject {
-        dataStack.perform(
+        sharedInstance.perform(
             asynchronous: { (transaction) -> Void in
                 transaction.delete(employees)
         },
@@ -257,7 +257,7 @@ class AppDataStack {
     */
     static func updateEmployee(identity: String, lastName: String, completion: @escaping (Bool) -> Void) {
         
-        AppDataStack.dataStack.perform(
+        AppDataStack.sharedInstance.perform(
             asynchronous: { (transaction) -> Void in
                 let person = transaction.fetchOne(
                     From<Employee>(),
