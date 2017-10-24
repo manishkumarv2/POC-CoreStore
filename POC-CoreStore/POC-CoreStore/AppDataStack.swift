@@ -80,6 +80,7 @@ class AppDataStack {
         */
     }
     
+    //MARK: - Fetch methods
     static func fetchAllEmployee() -> [Employee] {
         if let people: [Employee] = AppDataStack.dataStack.fetchAll(
                 From(Employee.self),
@@ -139,6 +140,23 @@ class AppDataStack {
         }else {
             completion(nil)
         }
+    }
+    
+    //MARK: - Query methods
+    
+    static func fetchEmployeeWithSelect() -> [[String: Any]] {
+        
+        let employee = dataStack.queryAttributes(
+            From<Employee>(),
+            Select(.count("empNo", as: "Employee Count")),
+            Where("department.sub == %@", "iOS")
+//            Tweak { (fetchRequest) -> Void in
+//                fetchRequest.propertiesToFetch?.append(contentsOf: ["firstName"])
+//                fetchRequest.returnsObjectsAsFaults = false
+//                fetchRequest.includesSubentities = true
+//            }
+        ) ?? []
+        return employee
     }
     
 //    static func deleteEmployee(employee: Employee) {

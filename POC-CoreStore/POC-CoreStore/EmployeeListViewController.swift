@@ -112,6 +112,9 @@ class EmployeeListViewController: UIViewController {
         addPickerView(sender: sender)
     }
     
+    @IBAction func queryButtonTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "segueToQuery", sender: self)
+    }
     
     @IBAction func editButtonTuched(_ sender: UIBarButtonItem) {
 //        if let selectedPath = self.employeeTableView.indexPathsForSelectedRows{
