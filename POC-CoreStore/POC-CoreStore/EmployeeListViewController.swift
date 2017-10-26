@@ -165,13 +165,20 @@ class EmployeeListViewController: UIViewController {
     
 }
 
+
+// MARK: ListObserver
+
 extension EmployeeListViewController: ListObserver {
     
     typealias ListEntityType = Employee
-
+    
+    func listMonitorWillChange(_ monitor: ListMonitor<Employee>) {
+        print("WillChange - \(monitor)")
+        self.employeeTableView.beginUpdates()
+    }
     func listMonitorDidChange(_ monitor: ListMonitor<Employee>) {
         print("DidChange - \(monitor)")
-        self.employeeTableView.reloadData()
+        self.employeeTableView.endUpdates()
     }
     
     func listMonitorDidRefetch(_ monitor: ListMonitor<Employee>) {
@@ -179,18 +186,36 @@ extension EmployeeListViewController: ListObserver {
         self.employeeTableView.reloadData()
     }
     
-//    func listMonitor(_ monitor: ListMonitor<Employee>, didInsertObject object: Employee, toIndexPath indexPath: NSIndexPath) {
-//        print("didInsertObject - \(monitor)")
-//    }
-//    func listMonitor(_ monitor: ListMonitor<Employee>, didDeleteObject object: Employee, fromIndexPath indexPath: NSIndexPath) {
-//        print("didDeleteObject - \(monitor)")
-//    }
-//    func listMonitor(_ monitor: ListMonitor<Employee>, didUpdateObject object: Employee, atIndexPath indexPath: NSIndexPath){
-//        print("didUpdateObject - \(monitor)")
-//    }
-//    func listMonitor(_ monitor: ListMonitor<Employee>, didMoveObject object: Employee, fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath){
-//        print("didMoveObject - \(monitor)")
-//    }
+}
+
+
+// MARK: ListObjectObserver
+
+extension EmployeeListViewController: ListObjectObserver {
+    
+    func listMonitor(_ monitor: ListMonitor<Employee>, didInsertObject object: Employee, toIndexPath indexPath: IndexPath) {
+        print("didInsertObject - \(monitor)")
+        self.employeeTableView.insertRows(at: [indexPath], with: .automatic)
+    }
+    
+    func listMonitor(_ monitor: ListMonitor<Employee>, didDeleteObject object: Employee, fromIndexPath indexPath: IndexPath) {
+        print("didDeleteObject - \(monitor)")
+        self.employeeTableView.deleteRows(at: [indexPath], with: .middle)
+    }
+    
+    func listMonitor(_ monitor: ListMonitor<Employee>, didUpdateObject object: Employee, atIndexPath indexPath: IndexPath){
+        print("didUpdateObject - \(monitor)")
+        if let cell = self.employeeTableView.cellForRow(at: indexPath) as? EmployeeListCell {
+            let person = employeeListMonitor[indexPath]
+            cell.employee = person
+        }
+    }
+    
+    func listMonitor(_ monitor: ListMonitor<Employee>, didMoveObject object: Employee, fromIndexPath: IndexPath, toIndexPath: IndexPath){
+        print("didMoveObject - \(monitor)")
+        self.employeeTableView.deleteRows(at: [fromIndexPath], with: .automatic)
+        self.employeeTableView.insertRows(at: [toIndexPath], with: .automatic)
+    }
 }
 
 extension EmployeeListViewController: UIPickerViewDelegate, UIPickerViewDataSource {
